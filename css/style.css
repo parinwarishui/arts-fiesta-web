@@ -1,0 +1,436 @@
+/* ==========================================================================
+   Arts Fiesta 2026 — Coming Soon teaser
+   ========================================================================== */
+
+:root {
+  --color-bg: #582630;
+  --color-text: #ffffd3;
+  --color-link-hover: #ad3030;
+  --color-selection-bg: #8e5f92;
+  --color-badge-bg: #ffffd3;
+  --color-badge-text: #582630;
+  --color-sponsor-label: #8e5f92;
+
+  --font-display: "Jost", "Kabel Black", "Arial Black", sans-serif;
+  --font-hand: "Gaegu", system-ui;
+  --font-artistic: "Barriecito", system-ui;
+
+  --max-width: 1200px;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-hand);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-text);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-link-hover);
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-text);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Reveal-on-load animation ---------- */
+
+@keyframes af-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-reveal] {
+  animation: af-fade-up 900ms cubic-bezier(0.22, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero__bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% center;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(20, 8, 11, 0.4);
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(88, 38, 48, 0) 0%,
+    rgba(88, 38, 48, 0) 68%,
+    rgba(88, 38, 48, 0.55) 86%,
+    var(--color-bg) 100%
+  );
+}
+
+/* ---------- Top bar ---------- */
+
+.top-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1.1rem, 3vw, 1.8rem) clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.top-bar__brand {
+  font-family: var(--font-artistic);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--color-text);
+}
+
+.top-bar__badge {
+  font-family: var(--font-artistic);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--color-text);
+  border: 1px solid rgba(88, 38, 48, 0.55);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+/* ---------- Hero content ---------- */
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem clamp(1.25rem, 5vw, 5rem);
+}
+
+.hero__inner {
+  max-width: 56rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+  margin-bottom: 0.8rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.98;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero__logo {
+  display: block;
+  width: clamp(180px, 40vw, 460px);
+  height: auto;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.4));
+}
+
+.hero__logo-fallback {
+  display: none;
+  font-size: clamp(1.7rem, 5.5vw, 3.9rem);
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* shown via JS if the logo image fails to load */
+.hero__title.logo-failed .hero__logo {
+  display: none;
+}
+.hero__title.logo-failed .hero__logo-fallback {
+  display: block;
+}
+
+.hero__desc {
+  z-index: 4;
+  max-width: 46ch;
+  margin: 1rem 0 0;
+  font-family: var(--font-hand);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  line-height: 1.4;
+  color: var(--color-text);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero__meta {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--color-text);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero__date {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: auto !important;
+    height: 78vh !important;
+  }
+}
+
+/* ---------- Countdown ---------- */
+
+.countdown {
+  position: relative;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 3.5rem)
+    clamp(4rem, 9vw, 7rem);
+  text-align: center;
+  background: var(--color-bg);
+}
+
+.countdown__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  letter-spacing: 0.34em;
+  color: var(--color-text);
+  margin-bottom: 1.6rem;
+}
+
+.countdown__grid {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: clamp(4px, 2.6vw, 32px);
+  font-family: var(--font-artistic);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.countdown__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  flex: 1 1 0;
+  gap: clamp(0.4rem, 1.2vw, 0.7rem);
+}
+
+.countdown__value {
+  font-size: clamp(1.7rem, 11vw, 8rem);
+  font-family: var(--font-artistic);
+  color: var(--color-text);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.countdown__unit {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.42rem, 1.9vw, 0.92rem);
+  letter-spacing: clamp(0.05em, 0.24em, 0.24em);
+  color: var(--color-badge-text);
+  background: var(--color-badge-bg);
+  padding: clamp(0.15rem, 0.5vw, 0.25rem) clamp(0.3rem, 1.4vw, 0.7rem);
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.countdown__note {
+  margin: 2.8rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: var(--color-text);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  position: relative;
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3.5rem) 1.6rem;
+}
+
+.footer__grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.4rem;
+  align-items: start;
+}
+
+.footer__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+
+.footer__desc {
+  margin: 0.8rem 0 0;
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 32ch;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+}
+
+.footer__links a {
+  text-decoration: none;
+}
+
+.footer__sponsors {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sponsor__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  color: var(--color-sponsor-label);
+}
+
+.sponsor__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.sponsor__logo--gomgom {
+  width: 140px;
+}
+
+.sponsor__logo img {
+  width: 78%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer__bottom {
+  max-width: var(--max-width);
+  margin: 2.6rem auto 0;
+  padding-top: 1.3rem;
+  border-top: 1px solid rgba(255, 255, 211, 0.18);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer__bottom a {
+  text-decoration: none;
+}

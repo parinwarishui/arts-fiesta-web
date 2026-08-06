@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arts Fiesta 2026 — Coming Soon</title>
+    <meta
+      name="description"
+      content="Arts Fiesta 2026 is coming to *SCAPE Treetop. A by-students-for-students showcase of SUTD's Arts Cluster — more reveals soon."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Grenze:ital,wght@0,400;0,500;0,600;1,400&family=Gaegu:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ============ HERO / TEASER ============ -->
+    <section id="hero" class="hero">
+      <!-- background image, full bleed -->
+      <div class="hero__bg">
+        <img
+          src="assets/images/hero-key-art.jpg"
+          alt="Arts Fiesta 2026 key art"
+        />
+      </div>
+      <!-- darken layer over the image for contrast -->
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <!-- scrim for text contrast, fading from transparent to full background colour at the base -->
+      <div class="hero__scrim" aria-hidden="true"></div>
+
+      <!-- top bar -->
+      <div class="top-bar">
+        <div class="top-bar__brand">ARTS FIESTA</div>
+        <div class="top-bar__badge">COMING SOON</div>
+      </div>
+
+      <!-- content, anchored to the lower band -->
+      <div class="hero__content">
+        <div class="hero__inner">
+          <div class="hero__eyebrow" data-reveal>
+            SUTD ARTS CLUSTER PRESENTS
+          </div>
+
+          <h1 id="hero-title" class="hero__title" data-reveal>
+            <img
+              id="hero-logo"
+              class="hero__logo"
+              src="assets/images/arts-fiesta-2026-logo.svg"
+              alt="Arts Fiesta 2026"
+            />
+            <span class="hero__logo-fallback">ARTS FIESTA 2026</span>
+          </h1>
+
+          <p class="hero__desc" data-reveal>
+            One rooftop. Twelve student arts groups. An evening of music,
+            movement, theatre, art and making.
+          </p>
+
+          <p class="hero__meta" data-reveal>
+            <span class="hero__date">2 October 2026 · 2:00 PM – 8:00 PM</span
+            ><br />
+            *SCAPE The Treetop (Level 5), Singapore
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COUNTDOWN ============ -->
+    <section id="countdown" class="countdown">
+      <div id="countdown-label" class="countdown__label" data-reveal>
+        ARTS FIESTA IS COMING TO YOU IN...
+      </div>
+      <div class="countdown__grid" aria-live="off">
+        <div class="countdown__item">
+          <span id="countdown-days" class="countdown__value">00</span>
+          <span class="countdown__unit">DAYS</span>
+        </div>
+        <div class="countdown__item">
+          <span id="countdown-hours" class="countdown__value">00</span>
+          <span class="countdown__unit">HOURS</span>
+        </div>
+        <div class="countdown__item">
+          <span id="countdown-minutes" class="countdown__value">00</span>
+          <span class="countdown__unit">MINUTES</span>
+        </div>
+        <div class="countdown__item">
+          <span id="countdown-seconds" class="countdown__value">00</span>
+          <span class="countdown__unit">SECONDS</span>
+        </div>
+      </div>
+      <p class="countdown__note" data-reveal>MORE TO BE REVEALED SOON</p>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__title">ARTS FIESTA 2026</div>
+          <p class="footer__desc">
+            A by-students-for-students platform for the SUTD Arts Cluster.
+          </p>
+        </div>
+        <div class="footer__links">
+          <a
+            href="https://root.sutd.edu.sg/student-life/stu-org-directory"
+            target="_blank"
+            rel="noopener noreferrer"
+            >ROOT Student Organisation Directory ↗</a
+          >
+          <a
+            href="https://www.instagram.com/sutdarts/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Instagram — @sutdarts ↗</a
+          >
+          <a href="mailto:arts@rep.sutd.edu.sg"
+            >Contact us — arts@rep.sutd.edu.sg</a
+          >
+        </div>
+        <div class="footer__sponsors">
+          <div class="sponsor">
+            <span class="sponsor__label">VENUE SPONSOR</span>
+            <a
+              class="sponsor__logo"
+              href="https://www.scape.sg/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="assets/images/scape-logo.webp" alt="*SCAPE" />
+            </a>
+          </div>
+          <div class="sponsor">
+            <span class="sponsor__label">FOOD SPONSOR</span>
+            <a
+              class="sponsor__logo sponsor__logo--gomgom"
+              href="https://www.instagram.com/gomgom.sg/?hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="assets/images/gomgom-logo.png" alt="Gom Gom" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Arts Fiesta · SUTD Arts Cluster</span>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
