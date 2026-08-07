@@ -63,4 +63,104 @@
       logoTitle.classList.add("logo-failed");
     });
   }
+
+  // ---------- Recap photo slider ----------
+  // Auto-slides continuously; pauses while the user is dragging.
+  // Clicking a photo (without dragging) opens the album link.
+  (function initRecapSlider() {
+    var slider = document.getElementById("recap-slider");
+    var track = document.getElementById("recap-track");
+    if (!slider || !track) return;
+
+    // Duplicate the slides once so the track can loop seamlessly.
+    track.innerHTML += track.innerHTML;
+
+    var SPEED = 0.4; // px per frame (~24px/s at 60fps)
+    var offset = 0;
+    var loopWidth = 0;
+    var dragging = false;
+    var dragStartX = 0;
+    var dragStartOffset = 0;
+    var dragMoved = false;
+    var rafId = null;
+
+    function measure() {
+      loopWidth = track.scrollWidth / 2;
+    }
+
+    function applyTransform() {
+      track.style.transform = "translateX(" + -offset + "px)";
+    }
+
+    function tick() {
+      if (!dragging) {
+        offset += SPEED;
+        if (offset >= loopWidth) offset -= loopWidth;
+        applyTransform();
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function pointerDown(clientX) {
+      dragging = true;
+      dragMoved = false;
+      dragStartX = clientX;
+      dragStartOffset = offset;
+      slider.classList.add("is-dragging");
+    }
+
+    function pointerMove(clientX) {
+      if (!dragging) return;
+      var delta = clientX - dragStartX;
+      if (Math.abs(delta) > 4) dragMoved = true;
+      offset = dragStartOffset - delta;
+      if (offset < 0) offset += loopWidth;
+      if (offset >= loopWidth) offset -= loopWidth;
+      applyTransform();
+    }
+
+    function pointerUp() {
+      dragging = false;
+      slider.classList.remove("is-dragging");
+    }
+
+    slider.addEventListener("mousedown", function (e) {
+      pointerDown(e.clientX);
+      e.preventDefault();
+    });
+    window.addEventListener("mousemove", function (e) {
+      pointerMove(e.clientX);
+    });
+    window.addEventListener("mouseup", pointerUp);
+
+    slider.addEventListener(
+      "touchstart",
+      function (e) {
+        pointerDown(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+    slider.addEventListener(
+      "touchmove",
+      function (e) {
+        pointerMove(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+    slider.addEventListener("touchend", pointerUp);
+
+    // Prevent the link from firing if the user was dragging.
+    track.addEventListener(
+      "click",
+      function (e) {
+        if (dragMoved) e.preventDefault();
+      },
+      true
+    );
+
+    window.addEventListener("resize", measure);
+
+    measure();
+    rafId = requestAnimationFrame(tick);
+  })();
 })();
