@@ -361,6 +361,24 @@ img {
   user-select: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  /* Fade the two edges by masking the scroller itself, rather than
+     overlaying a separate element — an overlay can end up rendered
+     behind the scrolling content's own compositing layer on mobile
+     WebKit (a side effect of -webkit-overflow-scrolling: touch). */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 clamp(2rem, 8vw, 6rem),
+    #000 calc(100% - clamp(2rem, 8vw, 6rem)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 clamp(2rem, 8vw, 6rem),
+    #000 calc(100% - clamp(2rem, 8vw, 6rem)),
+    transparent 100%
+  );
 }
 
 .recap__slider::-webkit-scrollbar {
@@ -370,27 +388,6 @@ img {
 
 .recap__slider.is-dragging {
   cursor: grabbing;
-}
-
-.recap__slider::before,
-.recap__slider::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(2rem, 8vw, 6rem);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.recap__slider::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--color-bg), transparent);
-}
-
-.recap__slider::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--color-bg), transparent);
 }
 
 .recap__track {
