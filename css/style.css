@@ -13,7 +13,7 @@
 
   --font-display: "Jost", "Kabel Black", "Arial Black", sans-serif;
   --font-hand: "Gaegu", system-ui;
-  --font-artistic: "Barriecito", system-ui;
+  --font-artistic: "Barrio", system-ui;
 
   --max-width: 1200px;
 }
@@ -190,7 +190,7 @@ img {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   color: var(--color-text);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.6rem;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -229,7 +229,7 @@ img {
 
 .hero__desc {
   z-index: 4;
-  max-width: 46ch;
+  max-width: 56ch;
   margin: 1rem 0 0;
   font-family: var(--font-hand);
   font-size: clamp(1rem, 1.4vw, 1.3rem);
@@ -239,8 +239,8 @@ img {
 }
 
 .hero__meta {
-  margin: 1rem 0 0;
-  font-family: var(--font-display);
+  margin: 2rem 0 0;
+  font-family: var(--font-artistic);
   font-weight: 700;
   font-size: clamp(1.05rem, 1.8vw, 1.5rem);
   line-height: 1.4;
@@ -250,7 +250,7 @@ img {
 
 .hero__date {
   color: var(--color-text);
-  font-family: var(--font-display);
+  font-family: var(--font-artistic);
   font-weight: 800;
 }
 
@@ -272,9 +272,9 @@ img {
 }
 
 .countdown__label {
-  font-family: var(--font-display);
+  font-family: var(--font-artistic);
   font-weight: 700;
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
   letter-spacing: 0.34em;
   color: var(--color-text);
   margin-bottom: 1.6rem;
@@ -284,7 +284,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  gap: clamp(4px, 2.6vw, 32px);
+  gap: clamp(4px, 2.6vw, 18px);
   font-family: var(--font-artistic);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
@@ -324,10 +324,10 @@ img {
 
 .countdown__note {
   margin: 2.8rem 0 0;
-  font-family: var(--font-display);
+  font-family: var(--font-artistic);
   font-weight: 600;
   letter-spacing: 0.16em;
-  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
   color: var(--color-text);
 }
 
