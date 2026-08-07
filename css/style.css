@@ -354,9 +354,18 @@ img {
   position: relative;
   max-width: var(--max-width);
   margin: 0 auto;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   cursor: grab;
   user-select: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.recap__slider::-webkit-scrollbar {
+  display: none;
+  height: 0;
 }
 
 .recap__slider.is-dragging {
@@ -388,14 +397,13 @@ img {
   display: flex;
   gap: clamp(0.6rem, 1.6vw, 1.25rem);
   width: max-content;
-  will-change: transform;
 }
 
 .recap__slide {
   flex: 0 0 auto;
   display: block;
   width: clamp(140px, 22vw, 240px);
-  aspect-ratio: 4 / 5;
+  height: clamp(175px, 27.5vw, 300px);
   border-radius: 8px;
   overflow: hidden;
   background: linear-gradient(

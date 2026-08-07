@@ -65,63 +65,71 @@
   }
 
   // ---------- Recap photo slider ----------
-  // Auto-slides continuously; pauses while the user is dragging.
-  // Clicking a photo (without dragging) opens the album link.
+  // Built on native horizontal scrolling (scrollLeft) rather than a custom
+  // CSS-transform animation, so it degrades gracefully: with no JS at all,
+  // it's still a normal scrollable/swipeable strip (the markup already
+  // contains two copies of the photos back-to-back for the loop).
+  // Auto-scrolls continuously; pauses while the user is dragging or has
+  // a pointer over it. Clicking a photo (without dragging) opens the album.
   (function initRecapSlider() {
     var slider = document.getElementById("recap-slider");
     var track = document.getElementById("recap-track");
     if (!slider || !track) return;
 
-    // Duplicate the slides once so the track can loop seamlessly.
-    track.innerHTML += track.innerHTML;
-
-    var SPEED = 0.4; // px per frame (~24px/s at 60fps)
-    var offset = 0;
-    var loopWidth = 0;
     var dragging = false;
-    var dragStartX = 0;
-    var dragStartOffset = 0;
     var dragMoved = false;
-    var rafId = null;
+    var startX = 0;
+    var startScroll = 0;
+    var autoTimer = null;
 
-    function measure() {
-      loopWidth = track.scrollWidth / 2;
+    function loopWidth() {
+      return track.scrollWidth / 2;
     }
 
-    function applyTransform() {
-      track.style.transform = "translateX(" + -offset + "px)";
+    function normalize() {
+      var lw = loopWidth();
+      if (lw <= 0) return;
+      if (slider.scrollLeft >= lw) slider.scrollLeft -= lw;
+      else if (slider.scrollLeft < 0) slider.scrollLeft += lw;
     }
 
-    function tick() {
-      if (!dragging) {
-        offset += SPEED;
-        if (offset >= loopWidth) offset -= loopWidth;
-        applyTransform();
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function () {
+        slider.scrollLeft += 1;
+        normalize();
+      }, 30);
+    }
+
+    function stopAuto() {
+      if (autoTimer !== null) {
+        clearInterval(autoTimer);
+        autoTimer = null;
       }
-      rafId = requestAnimationFrame(tick);
     }
 
     function pointerDown(clientX) {
       dragging = true;
       dragMoved = false;
-      dragStartX = clientX;
-      dragStartOffset = offset;
+      startX = clientX;
+      startScroll = slider.scrollLeft;
       slider.classList.add("is-dragging");
+      stopAuto();
     }
 
     function pointerMove(clientX) {
       if (!dragging) return;
-      var delta = clientX - dragStartX;
+      var delta = clientX - startX;
       if (Math.abs(delta) > 4) dragMoved = true;
-      offset = dragStartOffset - delta;
-      if (offset < 0) offset += loopWidth;
-      if (offset >= loopWidth) offset -= loopWidth;
-      applyTransform();
+      slider.scrollLeft = startScroll - delta;
+      normalize();
     }
 
     function pointerUp() {
+      if (!dragging) return;
       dragging = false;
       slider.classList.remove("is-dragging");
+      startAuto();
     }
 
     slider.addEventListener("mousedown", function (e) {
@@ -158,9 +166,11 @@
       true
     );
 
-    window.addEventListener("resize", measure);
+    slider.addEventListener("mouseenter", stopAuto);
+    slider.addEventListener("mouseleave", function () {
+      if (!dragging) startAuto();
+    });
 
-    measure();
-    rafId = requestAnimationFrame(tick);
+    startAuto();
   })();
 })();
