@@ -15,6 +15,16 @@
   --font-hand: "Gaegu", system-ui;
   --font-artistic: "Barrio", system-ui;
 
+  /* Shared type-role tracking, reused by the tier classes below so the
+     same kind of text (kickers, headings, pill labels) reads the same
+     everywhere it shows up, even though each instance sets its own size. */
+  --tracking-eyebrow: 0.3em;
+  --tracking-subheading: 0.08em;
+  --tracking-brand: 0.08em;
+  --tracking-pill: 0.16em;
+
+  --radius-media: 12px;
+
   --max-width: 1200px;
 }
 
@@ -84,6 +94,107 @@ img {
   }
 }
 
+/* ---------- Typography tiers ----------
+   Shared roles for text that repeats across sections. Each tier fixes
+   the font-family/weight/letter-spacing so equivalent text matches
+   everywhere; size, color and spacing stay with the component class. */
+
+.text-eyebrow {
+  font-family: var(--font-artistic);
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+}
+
+.text-subheading {
+  font-family: var(--font-artistic);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  letter-spacing: var(--tracking-subheading);
+}
+
+.text-brand {
+  font-family: var(--font-artistic);
+  font-weight: 800;
+  letter-spacing: var(--tracking-brand);
+}
+
+.text-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-pill);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-pill);
+}
+
+/* ---------- Section layout ----------
+   Shared wrapper for standalone content sections (countdown, recap,
+   pre-order, …) so they share one padding rhythm and heading spot.
+   .section--centered is for sections whose content is centered as a
+   single column; sections with their own layout (e.g. two-column)
+   omit it and lay out their content directly. */
+
+.section {
+  position: relative;
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3.5rem);
+  background: var(--color-bg);
+}
+
+.section--centered {
+  text-align: center;
+}
+
+.section__title {
+  margin: 0 0 1.8rem;
+  color: var(--color-text);
+}
+
+/* ---------- Button ----------
+   Shared pill-shaped call-to-action, layered on top of the .pill
+   type tier for its font/tracking. */
+
+.button {
+  gap: 0.6rem;
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  color: var(--color-badge-text);
+  background: var(--color-badge-bg);
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  color: var(--color-badge-text);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.button__arrow {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.button:hover .button__arrow,
+.button:focus-visible .button__arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- Media frame ----------
+   Shared corner treatment for anything that shows a photo or logo, so
+   every image on the page reads as one consistent, smooth-edged style. */
+
+.media-frame {
+  border-radius: var(--radius-media);
+  overflow: hidden;
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -145,17 +256,11 @@ img {
 }
 
 .top-bar__brand {
-  font-family: var(--font-artistic);
-  font-weight: 800;
-  letter-spacing: 0.08em;
   font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   color: var(--color-text);
 }
 
 .top-bar__badge {
-  font-family: var(--font-artistic);
-  font-weight: 600;
-  letter-spacing: 0.22em;
   font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   color: var(--color-text);
   border: 1px solid rgba(88, 38, 48, 0.55);
@@ -185,10 +290,7 @@ img {
 }
 
 .hero__eyebrow {
-  font-family: var(--font-hand);
-  font-weight: 700;
   font-size: 0.8rem;
-  letter-spacing: 0.2em;
   color: var(--color-text);
   margin-bottom: 1.6rem;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
@@ -263,23 +365,6 @@ img {
 
 /* ---------- Countdown ---------- */
 
-.countdown {
-  position: relative;
-  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 3.5rem)
-    clamp(4rem, 9vw, 7rem);
-  text-align: center;
-  background: var(--color-bg);
-}
-
-.countdown__label {
-  font-family: var(--font-artistic);
-  font-weight: 700;
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  letter-spacing: 0.34em;
-  color: var(--color-text);
-  margin-bottom: 1.6rem;
-}
-
 .countdown__grid {
   display: flex;
   justify-content: center;
@@ -310,11 +395,7 @@ img {
 }
 
 .countdown__unit {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-weight: 700;
   font-size: clamp(0.42rem, 1.9vw, 0.92rem);
-  letter-spacing: clamp(0.05em, 0.24em, 0.24em);
   color: var(--color-badge-text);
   background: var(--color-badge-bg);
   padding: clamp(0.15rem, 0.5vw, 0.25rem) clamp(0.3rem, 1.4vw, 0.7rem);
@@ -324,31 +405,11 @@ img {
 
 .countdown__note {
   margin: 2.8rem 0 0;
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: 0.16em;
   font-size: clamp(1rem, 1.4vw, 1.2rem);
   color: var(--color-text);
 }
 
 /* ---------- Recap ---------- */
-
-.recap {
-  position: relative;
-  padding: clamp(1rem, 4vw, 2rem) clamp(1.25rem, 4vw, 3.5rem)
-    clamp(3rem, 7vw, 5rem);
-  text-align: center;
-  background: var(--color-bg);
-}
-
-.recap__title {
-  margin: 0 0 1.8rem;
-  font-family: var(--font-artistic);
-  font-weight: 700;
-  font-size: clamp(1.3rem, 3vw, 2.1rem);
-  letter-spacing: 0.04em;
-  color: var(--color-text);
-}
 
 .recap__slider {
   position: relative;
@@ -401,14 +462,11 @@ img {
   display: block;
   width: clamp(140px, 22vw, 240px);
   height: clamp(175px, 27.5vw, 300px);
-  border-radius: 8px;
-  overflow: hidden;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 211, 0.12),
     rgba(255, 255, 211, 0.04)
   );
-  border: 1px dashed rgba(255, 255, 211, 0.35);
 }
 
 .recap__slide img {
@@ -419,37 +477,7 @@ img {
 }
 
 .recap__button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
   margin-top: 2.4rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
-  color: var(--color-badge-text);
-  background: var(--color-badge-bg);
-  padding: 0.8rem 1.6rem;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-
-.recap__button:hover,
-.recap__button:focus-visible {
-  color: var(--color-badge-text);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-}
-
-.recap__arrow {
-  display: inline-block;
-  transition: transform 200ms ease;
-}
-
-.recap__button:hover .recap__arrow,
-.recap__button:focus-visible .recap__arrow {
-  transform: translateX(4px);
 }
 
 /* ---------- Footer ---------- */
@@ -471,10 +499,7 @@ img {
 }
 
 .footer__title {
-  font-family: var(--font-display);
-  font-weight: 800;
   font-size: 1.3rem;
-  letter-spacing: 0.05em;
   color: var(--color-text);
 }
 
@@ -512,10 +537,7 @@ img {
 }
 
 .sponsor__label {
-  font-family: var(--font-display);
-  font-weight: 700;
   font-size: 0.64rem;
-  letter-spacing: 0.22em;
   color: var(--color-sponsor-label);
 }
 
@@ -526,7 +548,6 @@ img {
   width: 150px;
   height: 60px;
   background: #ffffff;
-  border-radius: 6px;
 }
 
 .sponsor__logo--gomgom {
