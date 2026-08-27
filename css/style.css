@@ -100,7 +100,7 @@ img {
    everywhere; size, color and spacing stay with the component class. */
 
 .text-eyebrow {
-  font-family: var(--font-artistic);
+  font-family: var(--font-hand);
   font-weight: 700;
   letter-spacing: var(--tracking-eyebrow);
 }
@@ -166,7 +166,9 @@ img {
   padding: 0.8rem 1.6rem;
   border-radius: 999px;
   text-decoration: none;
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .button:hover,
@@ -256,14 +258,14 @@ img {
 }
 
 .top-bar__brand {
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  color: var(--color-text);
+  height: clamp(30px, 4.5vw, 42px);
+  width: auto;
 }
 
 .top-bar__badge {
   font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   color: var(--color-text);
-  border: 1px solid rgba(88, 38, 48, 0.55);
+  border: 2px solid var(--color-text);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
 }
