@@ -124,6 +124,11 @@ img {
   letter-spacing: var(--tracking-pill);
 }
 
+.text-hand {
+  font-family: var(--font-hand);
+  font-weight: 700;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -260,6 +265,7 @@ img {
 .top-bar__brand {
   height: clamp(30px, 4.5vw, 42px);
   width: auto;
+  max-width: 60px;
 }
 
 .top-bar__badge {
@@ -405,12 +411,6 @@ img {
   white-space: nowrap;
 }
 
-.countdown__note {
-  margin: 2.8rem 0 0;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  color: var(--color-text);
-}
-
 /* ---------- Recap ---------- */
 
 .recap__slider {
@@ -482,54 +482,81 @@ img {
   margin-top: 2.4rem;
 }
 
-/* ---------- Pre-order ---------- */
+/* ---------- Instagram ----------
+   Self-hosted thumbnails of our own teaser videos (not live embeds),
+   styled with a play-button overlay to read as inline video, but each
+   just links out to the real post on Instagram. */
 
-.preorder {
+.section__title--instagram {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.instagram-icon {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+}
+
+.instagram__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  max-width: var(--max-width);
+  gap: clamp(1rem, 3vw, 2rem);
+  max-width: 52rem;
   margin: 0 auto;
 }
 
-.preorder__media {
-  aspect-ratio: 3 / 4;
+@media (max-width: 640px) {
+  .instagram__grid {
+    grid-template-columns: 1fr;
+    max-width: 26rem;
+  }
 }
 
-.preorder__media img {
+.instagram__item {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: transparent;
+  transition: opacity 0.2s ease;
+}
+
+.instagram__item:hover {
+  opacity: 0.85;
+}
+
+.instagram__item img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background: transparent;
 }
 
-.preorder__content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.8rem;
+.instagram__item--video::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(2.6rem, 6vw, 3.6rem);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffd3'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 42%;
 }
 
-.preorder__content .section__title {
-  margin-bottom: 0;
-}
-
-.preorder__desc {
-  margin: 0;
-  font-family: var(--font-hand);
-  font-size: 1.05rem;
-  line-height: 1.6;
+.instagram__note {
+  margin: 1.8rem 0 0;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   color: var(--color-text);
-}
-
-.preorder__desc a {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .preorder {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ---------- Footer ---------- */

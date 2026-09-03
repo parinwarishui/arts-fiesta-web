@@ -6,8 +6,8 @@
 (function () {
   "use strict";
 
-  // Event start: 2 October 2026, 14:00 SGT (UTC+8)
-  var EVENT_START = Date.parse("2026-10-02T14:00:00+08:00");
+  // Event start: 2 October 2026, 15:00 SGT (UTC+8)
+  var EVENT_START = Date.parse("2026-10-02T15:00:00+08:00");
 
   var labelEl = document.getElementById("countdown-label");
   var defaultLabel = labelEl
