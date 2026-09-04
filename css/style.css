@@ -499,6 +499,7 @@ img {
   width: 0.85em;
   height: 0.85em;
   flex-shrink: 0;
+  margin-right: 0.4rem;
 }
 
 .instagram__grid {
