@@ -173,4 +173,74 @@
 
     startAuto();
   })();
+
+  // ---------- Instagram teaser slider ----------
+  // Same drag-to-scroll behavior as the recap slider, but static: no
+  // auto-scroll and no duplicated content, since there are only a
+  // handful of teaser cards rather than a full photo album.
+  (function initInstagramSlider() {
+    var slider = document.getElementById("instagram-slider");
+    var track = document.getElementById("instagram-track");
+    if (!slider || !track) return;
+
+    var dragging = false;
+    var dragMoved = false;
+    var startX = 0;
+    var startScroll = 0;
+
+    function pointerDown(clientX) {
+      dragging = true;
+      dragMoved = false;
+      startX = clientX;
+      startScroll = slider.scrollLeft;
+      slider.classList.add("is-dragging");
+    }
+
+    function pointerMove(clientX) {
+      if (!dragging) return;
+      var delta = clientX - startX;
+      if (Math.abs(delta) > 4) dragMoved = true;
+      slider.scrollLeft = startScroll - delta;
+    }
+
+    function pointerUp() {
+      if (!dragging) return;
+      dragging = false;
+      slider.classList.remove("is-dragging");
+    }
+
+    slider.addEventListener("mousedown", function (e) {
+      pointerDown(e.clientX);
+      e.preventDefault();
+    });
+    window.addEventListener("mousemove", function (e) {
+      pointerMove(e.clientX);
+    });
+    window.addEventListener("mouseup", pointerUp);
+
+    slider.addEventListener(
+      "touchstart",
+      function (e) {
+        pointerDown(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+    slider.addEventListener(
+      "touchmove",
+      function (e) {
+        pointerMove(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
+    slider.addEventListener("touchend", pointerUp);
+
+    // Prevent the link from firing if the user was dragging.
+    track.addEventListener(
+      "click",
+      function (e) {
+        if (dragMoved) e.preventDefault();
+      },
+      true
+    );
+  })();
 })();

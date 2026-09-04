@@ -19,7 +19,7 @@
      same kind of text (kickers, headings, pill labels) reads the same
      everywhere it shows up, even though each instance sets its own size. */
   --tracking-eyebrow: 0.3em;
-  --tracking-subheading: 0.08em;
+  --tracking-title: 0.08em;
   --tracking-brand: 0.08em;
   --tracking-pill: 0.16em;
 
@@ -95,9 +95,36 @@ img {
 }
 
 /* ---------- Typography tiers ----------
-   Shared roles for text that repeats across sections. Each tier fixes
-   the font-family/weight/letter-spacing so equivalent text matches
-   everywhere; size, color and spacing stay with the component class. */
+   Shared roles for text that repeats across sections, ordered by
+   hierarchy: header (the hero wordmark) > title (a section's own
+   heading) > subtitle (the supporting line under a title) > eyebrow
+   (the kicker above a title) > hand (casual accent copy) — plus
+   label and brand, two roles that sit outside that hierarchy (a UI
+   tag, a logotype lockup). Each tier fixes font-family/weight/
+   letter-spacing so equivalent text matches everywhere; size, color
+   and spacing stay with the component class.
+
+   A few components need a tier's font-family/weight but not its
+   letter-spacing (e.g. large numerals read better untracked). Rather
+   than duplicate the family/weight pair, those are grouped into the
+   tier's selector below — see the component's own rule for a pointer
+   back here. */
+
+.text-header {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.text-title,
+.text-subtitle {
+  font-family: var(--font-artistic);
+  font-weight: 700;
+}
+
+.text-title {
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  letter-spacing: var(--tracking-title);
+}
 
 .text-eyebrow {
   font-family: var(--font-hand);
@@ -105,36 +132,34 @@ img {
   letter-spacing: var(--tracking-eyebrow);
 }
 
-.text-subheading {
-  font-family: var(--font-artistic);
-  font-weight: 700;
-  font-size: clamp(1.3rem, 3vw, 2.1rem);
-  letter-spacing: var(--tracking-subheading);
-}
-
-.text-brand {
-  font-family: var(--font-artistic);
-  font-weight: 800;
-  letter-spacing: var(--tracking-brand);
-}
-
-.text-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: var(--tracking-pill);
-}
-
 .text-hand {
   font-family: var(--font-hand);
   font-weight: 700;
 }
 
+/* .hero__date and .countdown__grid share this family/weight but stay
+   untracked, so they're grouped in rather than composed via class. */
+.text-brand,
+.hero__date,
+.countdown__grid {
+  font-family: var(--font-artistic);
+  font-weight: 800;
+}
+
+.text-brand {
+  letter-spacing: var(--tracking-brand);
+}
+
+.text-label,
 .pill {
-  display: inline-flex;
-  align-items: center;
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: var(--tracking-pill);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
 }
 
 /* ---------- Section layout ----------
@@ -225,7 +250,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% center;
+  object-position: 68% 20%;
 }
 
 .hero__overlay {
@@ -304,10 +329,9 @@ img {
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
+/* type comes from .text-header, added alongside in markup */
 .hero__title {
   margin: 0;
-  font-family: var(--font-display);
-  font-weight: 800;
   line-height: 0.98;
   width: 100%;
   display: flex;
@@ -341,27 +365,24 @@ img {
   z-index: 4;
   max-width: 56ch;
   margin: 1rem 0 0;
-  font-family: var(--font-hand);
   font-size: clamp(1rem, 1.4vw, 1.3rem);
   line-height: 1.4;
   color: var(--color-text);
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
+/* type comes from .text-subtitle, added alongside in markup */
 .hero__meta {
   margin: 2rem 0 0;
-  font-family: var(--font-artistic);
-  font-weight: 700;
   font-size: clamp(1.05rem, 1.8vw, 1.5rem);
   line-height: 1.4;
   color: var(--color-text);
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
+/* font-family/weight grouped into .text-brand's selector above (kept untracked) */
 .hero__date {
   color: var(--color-text);
-  font-family: var(--font-artistic);
-  font-weight: 800;
 }
 
 @media (max-width: 640px) {
@@ -373,13 +394,12 @@ img {
 
 /* ---------- Countdown ---------- */
 
+/* font-family/weight grouped into .text-brand's selector above (kept untracked) */
 .countdown__grid {
   display: flex;
   justify-content: center;
   align-items: baseline;
   gap: clamp(4px, 2.6vw, 18px);
-  font-family: var(--font-artistic);
-  font-weight: 800;
   font-variant-numeric: tabular-nums;
   flex-wrap: nowrap;
   max-width: 100%;
@@ -396,7 +416,6 @@ img {
 
 .countdown__value {
   font-size: clamp(1.7rem, 11vw, 8rem);
-  font-family: var(--font-artistic);
   color: var(--color-text);
   line-height: 1.15;
   white-space: nowrap;
@@ -502,24 +521,55 @@ img {
   margin-right: 0.4rem;
 }
 
-.instagram__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1rem, 3vw, 2rem);
-  max-width: 52rem;
+.instagram__slider {
+  position: relative;
+  max-width: 70rem;
   margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  user-select: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 clamp(1rem, 4vw, 3rem),
+    #000 calc(100% - clamp(1rem, 4vw, 3rem)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 clamp(1rem, 4vw, 3rem),
+    #000 calc(100% - clamp(1rem, 4vw, 3rem)),
+    transparent 100%
+  );
 }
 
-@media (max-width: 640px) {
-  .instagram__grid {
-    grid-template-columns: 1fr;
-    max-width: 26rem;
-  }
+.instagram__slider::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
+
+.instagram__slider.is-dragging {
+  cursor: grabbing;
+}
+
+.instagram__grid {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  width: max-content;
+  margin: 0 auto;
+  padding: 0.25rem;
 }
 
 .instagram__item {
   position: relative;
   display: block;
+  flex: 0 0 auto;
+  width: clamp(250px, 30vw, 350px);
   aspect-ratio: 4 / 3;
   background: transparent;
   transition: opacity 0.2s ease;
@@ -554,6 +604,27 @@ img {
   background-size: 42%;
 }
 
+.instagram__item--more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 2px dashed var(--color-text);
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.instagram__more-text {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--color-text);
+}
+
+.instagram__more-button {
+  pointer-events: none;
+}
+
 .instagram__note {
   margin: 1.8rem 0 0;
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
@@ -585,7 +656,6 @@ img {
 
 .footer__desc {
   margin: 0.8rem 0 0;
-  font-family: var(--font-hand);
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--color-text);
@@ -596,7 +666,6 @@ img {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  font-family: var(--font-hand);
   font-size: 1.05rem;
 }
 
