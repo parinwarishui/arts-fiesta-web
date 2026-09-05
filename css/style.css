@@ -231,7 +231,13 @@ img {
 
 .hero {
   position: relative;
+  /* dvh tracks the browser's *actual* visible area on mobile, where a
+     collapsing/expanding address bar makes plain vh unreliable (100vh
+     there is measured against the largest possible viewport, not what's
+     really on screen). Declared after vh as a progressive enhancement —
+     browsers that don't understand dvh ignore the line and keep vh. */
   min-height: 115vh;
+  min-height: 115dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -307,12 +313,18 @@ img {
   position: relative;
   z-index: 2;
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Centered, but biased upward by giving the box more room below the
+     content than above it (see the asymmetric padding below) — a
+     layout-based lift instead of a transform, so it's bounded by this
+     box's real height and can never paint over the top bar above it,
+     however short the viewport actually is. */
   justify-content: center;
   text-align: center;
-  padding: 2rem clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(1rem, 4vh, 2rem) clamp(1.25rem, 5vw, 5rem) clamp(4rem, 16vh, 10rem);
 }
 
 .hero__inner {
@@ -320,7 +332,6 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateY(-7rem);
 }
 
 .hero__eyebrow {
@@ -392,15 +403,21 @@ img {
     /* Shorter box = less side-cropping on the near-square artwork
        (object-fit: cover crops width to fill height), so lowering
        this reveals more of the image left/right. Raise it back
-       toward 92vh for a taller, more cropped-in mobile hero. */
+       toward 92vh for a taller, more cropped-in mobile hero.
+       dvh (see the base .hero rule) keeps this accurate once a real
+       phone's address bar shows/hides — vh alone would not. */
     height: 62vh !important;
+    height: 62dvh !important;
   }
 
-  .hero__inner {
-    /* Mobile-only lift, layered on top of the -7rem set above for
-       desktop — make this more negative to push the logo/text
-       chunk further up, less negative to bring it back down. */
-    transform: translateY(-5rem);
+  .hero__content {
+    /* Extra mobile-only lift: push the bottom padding out further
+       than the desktop rule so the logo/text chunk sits higher.
+       Still just padding within .hero__content's real box, so it
+       can never paint over the top bar the way a fixed transform
+       could on a shorter-than-expected real viewport. More padding
+       here = higher; less = lower. */
+    padding-bottom: clamp(5rem, 22vh, 13rem);
   }
 }
 
