@@ -231,7 +231,7 @@ img {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 115vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -320,6 +320,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform: translateY(-7rem);
 }
 
 .hero__eyebrow {
@@ -388,7 +389,18 @@ img {
 @media (max-width: 640px) {
   .hero {
     min-height: auto !important;
-    height: 78vh !important;
+    /* Shorter box = less side-cropping on the near-square artwork
+       (object-fit: cover crops width to fill height), so lowering
+       this reveals more of the image left/right. Raise it back
+       toward 92vh for a taller, more cropped-in mobile hero. */
+    height: 62vh !important;
+  }
+
+  .hero__inner {
+    /* Mobile-only lift, layered on top of the -7rem set above for
+       desktop — make this more negative to push the logo/text
+       chunk further up, less negative to bring it back down. */
+    transform: translateY(-5rem);
   }
 }
 
@@ -514,11 +526,16 @@ img {
   gap: 0.6rem;
 }
 
+.instagram__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .instagram-icon {
   width: 0.85em;
   height: 0.85em;
   flex-shrink: 0;
-  margin-right: 0.4rem;
 }
 
 .instagram__slider {
