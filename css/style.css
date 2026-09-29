@@ -1201,7 +1201,7 @@ img {
   transition: opacity 0.2s ease;
 }
 
-.instagram__item:hover {
+a.instagram__item:hover {
   opacity: 0.85;
 }
 
