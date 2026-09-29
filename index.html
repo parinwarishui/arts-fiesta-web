@@ -104,6 +104,326 @@
       </div>
     </section>
 
+    <!-- ============ LAYOUT ============ -->
+    <section id="layout" class="section section--centered">
+      <!-- The artwork has its own "LAYOUT" title, so the heading is kept
+           for screen readers only. -->
+      <h2 class="visually-hidden">Layout</h2>
+      <img
+        class="layout__map"
+        src="assets/images/AF_Layout.png"
+        alt="Venue layout: stage with the floor area in front of it; VAC / Drama workshop room and SUTDio booth at the bottom left; art exhibition near the bottom; CO, Bands and DDZ booths, Writer's Block, Photobooth & Photographic Club and registration by the entrance at the bottom right."
+        width="1368"
+        height="1022"
+        loading="lazy"
+        data-reveal
+      />
+    </section>
+
+    <!-- ============ SCHEDULE ============ -->
+    <section id="schedule" class="section section--centered">
+      <h2 class="section__title text-title" data-reveal>EVENT SCHEDULE</h2>
+      <div class="timetable" data-reveal style="--tt-rows: 78">
+        <div class="timetable__heads" aria-hidden="true">
+          <span class="timetable__head timetable__head--perf text-eyebrow"
+            >Performances</span
+          >
+          <span class="timetable__head timetable__head--workshop text-eyebrow"
+            >Workshops</span
+          >
+          <span class="timetable__head timetable__head--mascot text-eyebrow"
+            >Fab.io Appears</span
+          >
+        </div>
+        <div class="timetable__grid">
+          <!-- Laptop layout is to scale: one grid row = 5 minutes from 3:00 PM,
+               so --row = (start − 3:00 PM) / 5 + 1 and --span = duration / 5. -->
+          <span class="timetable__time" style="--row: 1" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">3:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 7" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">3:30 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 13" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">4:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 19" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">4:30 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 25" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">5:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 31" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">5:30 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 37" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">6:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 43" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">6:30 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 49" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">7:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 55" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">7:30 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 61" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">8:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 67" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">8:30 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 73" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">9:00 PM</span></span
+          >
+          <span class="timetable__time" style="--row: 79" aria-hidden="true"
+            ><span class="timetable__label text-eyebrow">9:30 PM</span></span
+          >
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 1; --span: 3"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">3:00 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: Girls?</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--workshop"
+            style="--row: 1; --span: 12"
+            data-clubs="Visual Arts Club"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">3:00 PM</span>
+              <span class="timetable__track">Workshop</span>
+              <span class="timetable__duration">1 hr</span>
+            </p>
+            <h3 class="timetable__title text-title">
+              Visual Arts Club
+              <span class="timetable__highlight">Workshop</span>
+            </h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 4; --span: 4"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">3:15 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: St Elmo’s Fire</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 8; --span: 4"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">3:35 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: Satisfactory CPU</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 12; --span: 3"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">3:55 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: Dewa-27</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 15; --span: 6"
+            data-clubs="Drama Club"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">4:10 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Drama Club</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--mascot"
+            style="--row: 15; --span: 4"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">4:10 – 4:30 PM</span>
+              <span class="timetable__track">Fab.io Appears</span>
+            </p>
+            <h3 class="timetable__title text-title">Fab.io Encounter #1</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 21; --span: 6"
+            data-clubs="Vocomotives"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">4:40 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Vocomotives</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--break"
+            style="--row: 27; --span: 18"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">5:10 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Intermission</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--workshop"
+            style="--row: 27; --span: 12"
+            data-clubs="Drama Club"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">5:10 PM</span>
+              <span class="timetable__track">Workshop</span>
+              <span class="timetable__duration">1 hr</span>
+            </p>
+            <h3 class="timetable__title text-title">
+              Drama Club <span class="timetable__highlight">Workshop</span>
+            </h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--mascot"
+            style="--row: 31; --span: 4"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">5:30 – 5:50 PM</span>
+              <span class="timetable__track">Fab.io Appears</span>
+            </p>
+            <h3 class="timetable__title text-title">Fab.io Encounter #2</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 45; --span: 6"
+            data-clubs="Chinese Orchestra (CO)"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">6:40 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Chinese Orchestra</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--workshop"
+            style="--row: 45; --span: 18"
+            data-clubs="Visual Arts Club"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">6:40 PM</span>
+              <span class="timetable__track">Workshop</span>
+              <span class="timetable__duration">1.5 hrs</span>
+            </p>
+            <h3 class="timetable__title text-title">
+              Visual Arts Club
+              <span class="timetable__highlight">Workshop</span>
+            </h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--mascot"
+            style="--row: 49; --span: 4"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">7:00 – 7:20 PM</span>
+              <span class="timetable__track">Fab.io Appears</span>
+            </p>
+            <h3 class="timetable__title text-title">Fab.io Encounter #3</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 51; --span: 6"
+            data-clubs="Winds|Chambers"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">7:10 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Winds × Chamber</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 57; --span: 6"
+            data-clubs="Ballroom Dancing Club"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">7:40 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Ballroom Dancing Club</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf timetable__event--short"
+            style="--row: 63; --span: 1"
+            data-clubs="Dance DerivativeZ Club"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">8:10 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">DDZ</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 64; --span: 3"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">8:15 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">
+              Bands: Every Project Delay
+            </h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 67; --span: 4"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">8:30 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: redbonner</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 71; --span: 4"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">8:50 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: Chicken McSpicy</h3>
+          </div>
+          <div
+            class="timetable__event timetable__event--perf"
+            style="--row: 75; --span: 4"
+            data-clubs="Bands"
+          >
+            <p class="timetable__meta text-eyebrow">
+              <span class="timetable__event-time">9:10 PM</span>
+              <span class="timetable__track">Performance</span>
+            </p>
+            <h3 class="timetable__title text-title">Bands: Safety Hazard</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ INSTAGRAM ============ -->
     <section id="instagram" class="section section--centered">
       <h2
@@ -167,6 +487,217 @@
               <span class="button__arrow" aria-hidden="true">&rarr;</span>
             </span>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLUBS ============ -->
+    <section id="clubs" class="section section--centered">
+      <h2 class="section__title text-title" data-reveal>
+        CHECK OUT OUR STUDENT CLUBS
+      </h2>
+      <div class="clubs__grid" id="clubs-grid" data-reveal>
+        <div
+          class="clubs__item"
+          data-club="Chinese Orchestra (CO)"
+          data-booth="Merch Sales"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_co.webp"
+            alt="Chinese Orchestra (CO)"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Chinese Orchestra (CO)</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Visual Arts Club"
+          data-booth="Art Exhibition"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_vac.webp"
+            alt="Visual Arts Club"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Visual Arts Club</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Bands"
+          data-booth="Merch Sales"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_bands.webp"
+            alt="Bands"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Bands</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Winds"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_winds.webp"
+            alt="Winds"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Winds</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Productions"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_prods.webp"
+            alt="Productions"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Productions</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Chambers"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_chamber.webp"
+            alt="Chambers"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Chambers</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Vocomotives"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_voco.webp"
+            alt="Vocomotives"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Vocomotives</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Ballroom Dancing Club"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_ballroom.webp"
+            alt="Ballroom Dancing Club"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Ballroom Dancing Club</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Dance DerivativeZ Club"
+          data-booth="Merch Sales"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_ddz.webp"
+            alt="Dance DerivativeZ Club"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Dance DerivativeZ Club</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Drama Club"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_drama.webp"
+            alt="Drama Club"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Drama Club</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Photography Club"
+          data-booth="Photobooth"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_photogs.webp"
+            alt="Photography Club"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Photography Club</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="SUTDio"
+          data-booth="Showcase"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_sutdio.webp"
+            alt="SUTDio"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">SUTDio</span>
+        </div>
+        <div
+          class="clubs__item"
+          data-club="Writer's Block"
+          data-booth="Showcase"
+          tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="assets/images/characters/char_writersblock.webp"
+            alt="Writer's Block"
+            draggable="false"
+            loading="lazy"
+          />
+          <span class="clubs__name text-title">Writer's Block</span>
         </div>
       </div>
     </section>
@@ -447,6 +978,26 @@
         <span>© 2026 Arts Fiesta · SUTD Arts Cluster</span>
       </div>
     </footer>
+
+    <!-- ============ CLUB MODAL ============ -->
+    <div id="club-modal-overlay" class="club-modal-overlay" hidden>
+      <div
+        id="club-modal"
+        class="club-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="club-modal-name"
+        tabindex="-1"
+      >
+        <button class="club-modal__close" type="button" aria-label="Close">
+          &times;
+        </button>
+        <div class="club-modal__tags" id="club-modal-tags"></div>
+        <img class="club-modal__image" id="club-modal-image" src="" alt="" />
+        <h3 class="club-modal__name text-title" id="club-modal-name"></h3>
+        <ul class="club-modal__slots" id="club-modal-slots" hidden></ul>
+      </div>
+    </div>
 
     <script src="js/script.js"></script>
   </body>
